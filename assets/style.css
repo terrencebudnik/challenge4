@@ -1,0 +1,27 @@
+header {
+    background-color: lightblue;
+    height: 75px;
+    border-style: solid black;
+
+}
+
+#highscores {
+    font-size: 1.5em;
+    margin-top: 20px;
+    float: left;
+}
+
+#time {
+    font-size: 1.5em;
+    margin-top: 20px;
+    float: right;
+}
+
+section {
+   text-align: center;
+}
+
+article {
+    
+    background-color: red;
+}
