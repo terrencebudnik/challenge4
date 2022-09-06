@@ -1,25 +1,60 @@
 var startQuizbutton = document.getElementById("start");
 var counterDiv = document.getElementById("time");
 var mainBody = document.querySelector("section");
-var question1 = {
-    question: "What is Javascript?",
-    options: ["A drink", "A food", "A coding language", "A machine"],
-    correctAnswer: "A coding language"  
-}
-var question2 = {
-    question: "A function requires____",
-    options: ["()", "<>", "**", "||"],
-    correctAnswer: "()"
-};
+var quizBox = document.getElementById("quizBox");
+var quizBoxquestions = document.getElementById("quizBoxquestions");
+var quizBoxanswers = document.getElementById("quizBoxanswers");
+var $answer1 = document.getElementById('answer-1')
+var $answer2 = document.getElementById('answer-2')
+var $answer3 = document.getElementById('answer-3')
+var $answer4 = document.getElementById('answer-4')
+var timer;
+var currentQuestion = 0;
 
+
+
+var quizQuestions = [
+{
+    question: "1. What is Javascript?",
+    options: {
+        A: "Drink",
+        B: "Food",
+        C: "Coding language",
+        D: "Machine"
+    },
+    correctAnswer: "Coding language"  
+},
+{
+    question: "2. A function requires___",
+    options: {
+        A: "()",
+        B: "<>",
+        C: "**",
+        D: "||"
+    },
+    correctAnswer: "()"
+},
+{   
+    question: "3. What is DOM?",
+    options: {
+        A: "Option 1",
+        B: "Option 2",
+        C: "Option 3",
+        D: "Option 4"
+    },
+    correctAnswer: "Option 2"
+}
+]; 
 
 
 
 startQuizbutton.addEventListener("click", function() {
-   showQuestion();
-    var countdown = 5;
+    mainBody.style.display = "none";
+    quizBox.style.display = "block";
+    showQuestion();
+    var countdown = 20;
     counterDiv.textContent = "Time Left: " + countdown;
-    var timer = setInterval(function() {
+    timer = setInterval(function() {
         countdown--;
         counterDiv.textContent = "Time Left: " + countdown
         if (countdown === 0) {
@@ -33,85 +68,37 @@ startQuizbutton.addEventListener("click", function() {
 
 function showQuestion () {
     
+    // var nextButton = document.createElement("button");
+    // nextButton.textContent = "Next Question"; 
+    // quizBox.appendChild(nextButton); 
+    
+    
+    quizBoxquestions.innerHTML = quizQuestions[currentQuestion].question;
+    $answer1.textContent = quizQuestions[currentQuestion].options.A;
+    $answer2.textContent = quizQuestions[currentQuestion].options.B;
+    $answer3.textContent = quizQuestions[currentQuestion].options.C;
+    $answer4.textContent = quizQuestions[currentQuestion].options.D;
+    
+    // var answers = [];
+    // answers[0]=(quizQuestions[0].options.A); 
+    // answers[1]=(quizQuestions[0].options.B); 
+    // answers[2]=(quizQuestions[0].options.C); 
+    // answers[3]=(quizQuestions[0].options.D); 
+
+   
+    // quizBoxanswers.innerHTML = answers.join("    "); 
+
+
+    
+    
+    
+    
+}
+
   
-    var div = document.createElement("div");
-    div.innerHTML = question1.question; 
-    document.body.appendChild(div); 
-    
-    var list = document.createElement("ol");
-    div.appendChild(list);
-    
-    var choice1 = document.createElement("li");
-    choice1.innerHTML = question1.options[0];   
-    list.appendChild(choice1);
-    
-    var choice2 = document.createElement("li");
-    choice2.innerHTML = question1.options[1];
-    list.appendChild(choice2);
-    
-    var choice3 = document.createElement("li");
-    choice3.innerHTML = question1.options[2];
-    list.appendChild(choice3);
-    
-    var choice4 = document.createElement("li");
-    choice4.innerHTML = question1.options[3];
-    list.appendChild(choice4);
-
-  
-
-    
-
-    var nextButton = document.createElement("button");
-    nextButton.textContent = "Next Question"; 
-    div.appendChild(nextButton); 
-
-    
-
-}   
-    
-//     nextButton.addEventListener("click", function() {
-//     var div = document.createElement("div");
-//     div.innerHTML = question2.question; 
     
     
+
+
     
-//     document.body.appendChild(div); 
     
-//     var list = document.createElement("ol");
-//     div.appendChild(list);
-    
-//     var choice1 = document.createElement("li");
-//     choice1.innerHTML = question2.options[0];   
-//     list.appendChild(choice1);
-    
-//     var choice2 = document.createElement("li");
-//     choice2.innerHTML = question2.options[1];
-//     list.appendChild(choice2);
-    
-//     var choice3 = document.createElement("li");
-//     choice3.innerHTML = question2.options[2];
-//     list.appendChild(choice3);
-    
-//     var choice4 = document.createElement("li");
-//     choice4.innerHTML = question2.options[3];
-//     list.appendChild(choice4);
-
-//     var nextButton = document.createElement("button");
-//     nextButton.textContent = "Next Question"; 
-//     div.appendChild(nextButton); 
-
-//     })
-// } 
-    
-
-
-
-
-
-
- 
-
-
-
-
-

@@ -1,17 +1,40 @@
 var startQuizbutton = document.getElementById("start");
 var counterDiv = document.getElementById("time");
 var mainBody = document.querySelector("section");
-var question1 = {
-    question: "What is Javascript?",
-    options: ["A drink", "A food", "A coding language", "A machine"],
-    correctAnswer: "A coding language"  
-}
-var question2 = {
-    question: "A function requires____",
-    options: ["()", "<>", "**", "||"],
-    correctAnswer: "()"
-};
+var quizContainer = document.getElementById("quiz");
 
+var quizQuestions = [
+{
+    question: "What is Javascript?",
+    options: {
+        A: "A drink",
+        B: "A food",
+        C: "A coding language",
+        D: "A machine"
+    },
+    correctAnswer: "A coding language"  
+},
+{
+    question: "A function requires___",
+    options: {
+        A: "()",
+        B: "<>",
+        C: "**",
+        D: "||"
+    },
+    correctAnswer: "()"
+},
+{   
+    question: "What is DOM?",
+    options: {
+        A: "Option 1",
+        B: "Option 2",
+        C: "Option 3",
+        D: "Option 4"
+    },
+    correctAnswer: "B"
+}
+]; 
 
 
 
@@ -32,82 +55,30 @@ startQuizbutton.addEventListener("click", function() {
 })
 
 function showQuestion () {
-    
-  
-    var div = document.createElement("div");
-    div.innerHTML = question1.question; 
-    document.body.appendChild(div); 
-    
-    var list = document.createElement("ol");
-    var node1 = div.createTextnode("");
-    div.appendChild(list);
-    
-    var choice1 = document.createElement("li");
-    choice1.innerHTML = question1.options[0];   
-    list.appendChild(choice1);
-    
-    var choice2 = document.createElement("li");
-    choice2.innerHTML = question1.options[1];
-    list.appendChild(choice2);
-    
-    var choice3 = document.createElement("li");
-    choice3.innerHTML = question1.options[2];
-    list.appendChild(choice3);
-    
-    var choice4 = document.createElement("li");
-    choice4.innerHTML = question1.options[3];
-    list.appendChild(choice4);
+    var output = [];
+    quizQuestions.forEach(currentQuestion, questionNumber) => {
+        var answers = [];
+        for(letter in currentQuestion.options){
+            answers.push(
+                <label>
+                <input type="radio" name="question${questionNumber}" value="${letter}">
+                ${letter} :
+                ${currentQuestion.answers[letter]}
+                </label>
+            );
+        }
+        output.push(
+        `<div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join('')} </div>`
+        );
+    }
 
-    var nextButton = document.createElement("button");
-    nextButton.textContent = "Next Question"; 
-    div.appendChild(nextButton); 
+);
 
-    
-    
-    nextButton.addEventListener("click", function() {
-    var div = document.createElement("div");
-    div.innerHTML = question2.question; 
+quizContainer.innerHTML = output.join('');
+
+}
     
     
     
-    document.body.appendChild(div); 
     
-    var list = document.createElement("ol");
-    div.appendChild(list);
-    
-    var choice1 = document.createElement("li");
-    choice1.innerHTML = question2.options[0];   
-    list.appendChild(choice1);
-    
-    var choice2 = document.createElement("li");
-    choice2.innerHTML = question2.options[1];
-    list.appendChild(choice2);
-    
-    var choice3 = document.createElement("li");
-    choice3.innerHTML = question2.options[2];
-    list.appendChild(choice3);
-    
-    var choice4 = document.createElement("li");
-    choice4.innerHTML = question2.options[3];
-    list.appendChild(choice4);
-
-    var nextButton = document.createElement("button");
-    nextButton.textContent = "Next Question"; 
-    div.appendChild(nextButton); 
-
-    })
-} 
-    
-
-
-
-
-
-
- 
-
-
-
-
-
-

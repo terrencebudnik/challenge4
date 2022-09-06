@@ -21,7 +21,18 @@ section {
    text-align: center;
 }
 
-article {
-    
-    background-color: red;
+
+.quizBox {
+    background-color: lightblue;
+    text-align: center;
+    margin-top: 100px;
+}
+
+#quizBoxquestions {
+    font-size: 2em;
+}
+
+#quizBoxanswers {
+    font-size: 1.5em;
+    margin-top: 20px;
 }
