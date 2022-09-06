@@ -19,21 +19,34 @@
         <button id="start">Start Quiz</button>
     </section>
     
-    <div id="quizBox" display="none">
+    <div id="quizBox">
         <article id="quizBoxquestions"></article>
         <article id="quizBoxanswers">
-            <ol>
-                <li id="answer-1"></li>
-                <li id="answer-2"></li>
-                <li id="answer-3"></li>
-                <li id="answer-4"></li>
-            </ol>
-            <button id="next-question-btn">Next Question</button>
+            <ul class="multipleChoice">
+                <li><a  id="answer-1" href="#"></a></li>
+                <li><a  id="answer-2" href="#"></a></li>
+                <li><a  id="answer-3" href="#"></a></li>
+                <li><a  id="answer-4" href="#"></a></li>
+            </ul>
+            
         </article>
-        <article id="nextButton"></article>
+        
     </div>
     
+   <div id="gameOver">GAME OVER</div>
    
+   <form id="highScores">
+
+        <label>First name:</label><br>
+        <input type="text"><br>
+        <label>Last Name:</label><br>
+        <input type="text"><br>
+        <label>Score</label><br>
+        <input href="#">
+        
+      </form>
+   
+
  
     
 <script src="./assets/script.js"></script>     

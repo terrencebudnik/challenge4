@@ -1,3 +1,4 @@
+var header = document.querySelector("header");
 var startQuizbutton = document.getElementById("start");
 var counterDiv = document.getElementById("time");
 var mainBody = document.querySelector("section");
@@ -9,7 +10,10 @@ var $answer2 = document.getElementById('answer-2')
 var $answer3 = document.getElementById('answer-3')
 var $answer4 = document.getElementById('answer-4')
 var timer;
+var countdown; 
 var currentQuestion = 0;
+var multipleChoice = document.querySelector("ul");
+var scoreTracker= 0; 
 
 
 
@@ -51,14 +55,16 @@ var quizQuestions = [
 startQuizbutton.addEventListener("click", function() {
     mainBody.style.display = "none";
     quizBox.style.display = "block";
-    showQuestion();
-    var countdown = 20;
+    showQuestion1();
+    countdown = 60;
     counterDiv.textContent = "Time Left: " + countdown;
     timer = setInterval(function() {
         countdown--;
         counterDiv.textContent = "Time Left: " + countdown
         if (countdown === 0) {
             clearInterval(timer);
+            
+
        }
        
 
@@ -66,38 +72,104 @@ startQuizbutton.addEventListener("click", function() {
 
 })
 
-function showQuestion () {
+function showQuestion1 () {
+    // for (currentQuestion=0; currentQuestion < 4; currentQuestion++){     
+    // }      
     
-    // var nextButton = document.createElement("button");
-    // nextButton.textContent = "Next Question"; 
-    // quizBox.appendChild(nextButton); 
-    
-    
-    quizBoxquestions.innerHTML = quizQuestions[currentQuestion].question;
-    $answer1.textContent = quizQuestions[currentQuestion].options.A;
-    $answer2.textContent = quizQuestions[currentQuestion].options.B;
-    $answer3.textContent = quizQuestions[currentQuestion].options.C;
-    $answer4.textContent = quizQuestions[currentQuestion].options.D;
-    
-    // var answers = [];
-    // answers[0]=(quizQuestions[0].options.A); 
-    // answers[1]=(quizQuestions[0].options.B); 
-    // answers[2]=(quizQuestions[0].options.C); 
-    // answers[3]=(quizQuestions[0].options.D); 
 
-   
-    // quizBoxanswers.innerHTML = answers.join("    "); 
+    quizBoxquestions.innerHTML = quizQuestions[0].question;
+    $answer1.textContent = quizQuestions[0].options.A;
+    $answer2.textContent = quizQuestions[0].options.B;
+    $answer3.textContent = quizQuestions[0].options.C;
+    $answer4.textContent = quizQuestions[0].options.D;
+    
+   multipleChoice.addEventListener('click', function(evt) {   
+        var target = evt.target.value; 
+        if (target = quizQuestions[0].correctAnswer) {
+            header.style.background = "green";
+            scoreTracker += 1;
+            showQuestion2();
+            
+        }
+          else {
+            header.style.background = "red"; 
+            countdown-15; 
+            showQuestion2();
 
+        }
+    })     
+ 
 
-    
-    
-    
     
 }
 
-  
+function showQuestion2 () {
+    // for (currentQuestion=0; currentQuestion < 4; currentQuestion++){     
+    // }      
     
     
+    quizBoxquestions.innerHTML = quizQuestions[1].question;
+    $answer1.textContent = quizQuestions[1].options.A;
+    $answer2.textContent = quizQuestions[1].options.B;
+    $answer3.textContent = quizQuestions[1].options.C;
+    $answer4.textContent = quizQuestions[1].options.D;
+    
+   multipleChoice.addEventListener('click', function(evt) {   
+        var target = evt.target.value; 
+        if (target = quizQuestions[1].correctAnswer) {
+            header.style.background = "green";
+            scoreTracker += 1;
+            showQuestion3(); 
+            
+        }
+          else {
+            header.style.background = "red";
+            countdown-15; 
+            showQuestion3(); 
+
+        }
+    })     
+    
+
+    
+}
+
+
+    
+function showQuestion3 () {
+    // for (currentQuestion=0; currentQuestion < 4; currentQuestion++){     
+    // }      
+    
+
+    quizBoxquestions.innerHTML = quizQuestions[2].question;
+    $answer1.textContent = quizQuestions[2].options.A;
+    $answer2.textContent = quizQuestions[2].options.B;
+    $answer3.textContent = quizQuestions[2].options.C;
+    $answer4.textContent = quizQuestions[2].options.D;
+    
+   multipleChoice.addEventListener('click', function(evt) {   
+        var target = evt.target.value; 
+        if (target = quizQuestions[2].correctAnswer) {
+            header.style.background = "green";
+            scoreTracker += 1;
+            quizBox.style.display = "none";
+    document.getElementById("gameOver").style.display = "block";
+    document.getElementById("highScores").style.display= "block"  
+            
+        }
+          else {
+            header.style.background = "red";
+            countdown-15; 
+            quizBox.style.display = "none";
+    document.getElementById("gameOver").style.display = "block";
+    document.getElementById("highScores").style.display= "block"  
+
+        }
+    })     
+    
+   
+}
+
 
 
     

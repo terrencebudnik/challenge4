@@ -22,10 +22,12 @@ section {
 }
 
 
-.quizBox {
-    background-color: lightblue;
-    text-align: center;
+#quizBox {
+    display: none;
+    background-color: rgb(170, 174, 175);
     margin-top: 100px;
+    height: 200px;
+    border-style: dashed black;
 }
 
 #quizBoxquestions {
@@ -33,6 +35,37 @@ section {
 }
 
 #quizBoxanswers {
-    font-size: 1.5em;
     margin-top: 20px;
+}
+
+li {
+    font-size: 1.25em;
+    margin: auto;
+    text-decoration: none;
+}
+
+li:hover {
+    background-color: lightblue;
+}
+
+a {
+    text-decoration: none;
+}
+
+#gameOver {
+    display: none;
+    height:100px;
+    border-style: solid;
+    width:800px; 
+    font-size: 5em;
+    text-align: center;
+    margin: auto;
+
+}
+
+
+#highScores {
+    display: none;
+    text-align: center;
+    margin: auto;
 }
