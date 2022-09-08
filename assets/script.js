@@ -5,10 +5,10 @@ var mainBody = document.querySelector("section");
 var quizBox = document.getElementById("quizBox");
 var quizBoxquestions = document.getElementById("quizBoxquestions");
 var quizBoxanswers = document.getElementById("quizBoxanswers");
-var $answer1 = document.getElementById('answer-1')
-var $answer2 = document.getElementById('answer-2')
-var $answer3 = document.getElementById('answer-3')
-var $answer4 = document.getElementById('answer-4')
+var answer1 = document.getElementById('answer-1')
+var answer2 = document.getElementById('answer-2')
+var answer3 = document.getElementById('answer-3')
+var answer4 = document.getElementById('answer-4')
 var correctAnswer; 
 var timer;
 var countdown; 
@@ -115,12 +115,12 @@ function showQuestion1 () {
     // }     
 
     quizBoxquestions.innerHTML = quizQuestions[0].question;
-    $answer1.textContent = quizQuestions[0].options.A;
-    $answer2.textContent = quizQuestions[0].options.B;
-    $answer3.textContent = quizQuestions[0].options.C;
-    $answer4.textContent = quizQuestions[0].options.D;
-    
-   multipleChoice.addEventListener('click', function(evt) {   
+    answer1.textContent = quizQuestions[0].options.A;
+    answer2.textContent = quizQuestions[0].options.B;
+    answer3.textContent = quizQuestions[0].options.C;
+    answer4.textContent = quizQuestions[0].options.D;
+   
+  multipleChoice.addEventListener('click', function(evt) {   
         var target = evt.target.value; 
         //correctAnswer = quizQuestions[0].correctAnswer;
         if (target = quizQuestions[0].correct) {
@@ -138,19 +138,20 @@ function showQuestion1 () {
     })     
  
     
-      
+return scoreTracker;    
 }
 
 function showQuestion2 () {
    
     
     quizBoxquestions.innerHTML = quizQuestions[1].question;
-    $answer1.textContent = quizQuestions[1].options.A;
-    $answer2.textContent = quizQuestions[1].options.B;
-    $answer3.textContent = quizQuestions[1].options.C;
-    $answer4.textContent = quizQuestions[1].options.D;
+    answer1.textContent = quizQuestions[1].options.A;
+    answer2.textContent = quizQuestions[1].options.B;
+    answer3.textContent = quizQuestions[1].options.C;
+    answer4.textContent = quizQuestions[1].options.D;
     
-   multipleChoice.addEventListener('click', function(evt) {   
+  
+    multipleChoice.addEventListener('click', function(evt) {   
         var target = evt.target.value; 
         if (target = quizQuestions[1].correct) {
             header.style.background = "green";
@@ -167,7 +168,7 @@ function showQuestion2 () {
     })     
     
     
-    
+    return scoreTracker;      
 }
 
 
@@ -177,10 +178,10 @@ function showQuestion3 () {
     
 
     quizBoxquestions.innerHTML = quizQuestions[2].question;
-    $answer1.textContent = quizQuestions[2].options.A;
-    $answer2.textContent = quizQuestions[2].options.B;
-    $answer3.textContent = quizQuestions[2].options.C;
-    $answer4.textContent = quizQuestions[2].options.D;
+    answer1.textContent = quizQuestions[2].options.A;
+    answer2.textContent = quizQuestions[2].options.B;
+    answer3.textContent = quizQuestions[2].options.C;
+    answer4.textContent = quizQuestions[2].options.D;
     
    multipleChoice.addEventListener('click', function(evt) {   
         var target = evt.target.value; 
@@ -199,7 +200,7 @@ function showQuestion3 () {
         }
     })     
     
-   
+    return scoreTracker;  
 }
 
 
@@ -207,10 +208,10 @@ function showQuestion4 () {
   
     
     quizBoxquestions.innerHTML = quizQuestions[3].question;
-    $answer1.textContent = quizQuestions[3].options.A;
-    $answer2.textContent = quizQuestions[3].options.B;
-    $answer3.textContent = quizQuestions[3].options.C;
-    $answer4.textContent = quizQuestions[3].options.D;
+    answer1.textContent = quizQuestions[3].options.A;
+    answer2.textContent = quizQuestions[3].options.B;
+    answer3.textContent = quizQuestions[3].options.C;
+    answer4.textContent = quizQuestions[3].options.D;
     
    multipleChoice.addEventListener('click', function(evt) {   
         var target = evt.target.value; 
@@ -228,7 +229,7 @@ function showQuestion4 () {
         }
     })     
     
-   
+    return scoreTracker;  
     
 }
 
@@ -237,10 +238,10 @@ function showQuestion5 () {
     
 
     quizBoxquestions.innerHTML = quizQuestions[4].question;
-    $answer1.textContent = quizQuestions[4].options.A;
-    $answer2.textContent = quizQuestions[4].options.B;
-    $answer3.textContent = quizQuestions[4].options.C;
-    $answer4.textContent = quizQuestions[4].options.D;
+    answer1.textContent = quizQuestions[4].options.A;
+    answer2.textContent = quizQuestions[4].options.B;
+    answer3.textContent = quizQuestions[4].options.C;
+    answer4.textContent = quizQuestions[4].options.D;
     
    multipleChoice.addEventListener('click', function(evt) {   
         var target = evt.target.value; 
@@ -250,7 +251,7 @@ function showQuestion5 () {
             quizBox.style.display = "none";
             clearInterval(timer);
     document.getElementById("gameOver").style.display = "block";
-    showScores.innerHTML="Final Score: " +scoreTracker.value; 
+    showScores.innerHTML="Final Score: " + scoreTracker.toString(); 
     document.getElementById("highScores").style.display= "block";  
             
         }
@@ -262,7 +263,7 @@ function showQuestion5 () {
     
         }
     })     
-    
+    return scoreTracker;    
    
 }
    
@@ -270,7 +271,7 @@ function showQuestion5 () {
 
 function finalScore() {
     document.getElementById("gameOver").style.display = "block";
-    showScores.innerHTML="Final Score: " + scoreTracker.value; 
+    showScores.innerHTML="Final Score: " + scoreTracker.toString(); 
     document.getElementById("highScores").style.display= "block"
 
 
