@@ -10,7 +10,9 @@
 </head>
 <body>
     <header>
-        <span id="highscores">View Highscores</span>
+        <span id="highscores"><button type="button" id="highScorebutton">View HighScores</button></span>
+        <!-- <span id="correct" style="display:none">Correct</span>
+        <span id="incorrect" style="display:none"">Incorrect</span> -->
         <span id="time">Time</span>
     </header>
     <section>  
@@ -19,32 +21,47 @@
         <button id="start">Start Quiz</button>
     </section>
     
-    <div id="quizBox">
-        <article id="quizBoxquestions"></article>
-        <article id="quizBoxanswers">
-            <ul class="multipleChoice">
-                <li><a  id="answer-1" href="#"></a></li>
-                <li><a  id="answer-2" href="#"></a></li>
-                <li><a  id="answer-3" href="#"></a></li>
-                <li><a  id="answer-4" href="#"></a></li>
-            </ul>
+    <div id="questionBody">
+        <div id="quizBox">
+            <article id="quizBoxquestions"></article>
+            <article id="quizBoxanswers">
+                <ul id="multipleChoice">
+                    <li><a  id="answer-1" href="#"></a></li>
+                    <li><a  id="answer-2" href="#"></a></li>
+                    <li><a  id="answer-3" href="#"></a></li>
+                    <li><a  id="answer-4" href="#"></a></li>
+                </ul>
             
-        </article>
+            </article>
         
+         </div>
     </div>
     
-   <div id="gameOver">GAME OVER</div>
+   <div id="gameOver">GAME OVER
+    <h2 id="showScores"></h2>
+   </div>
    
    <form id="highScores">
 
         <label>First name:</label><br>
-        <input type="text"><br>
+        <input id="firstName" type="text"><br>
         <label>Last Name:</label><br>
-        <input type="text"><br>
-        <label>Score</label><br>
-        <input href="#">
+        <input id="lastName" type="text"><br>
+        <input id="submitScores" type="button" onclick="scores()" value="Submit form">
         
       </form>
+
+    <div id="scoresheet">
+        <h1>Scores</h1>
+        <ol>
+            <li id="player-1"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+
+    </div>
    
 
  
