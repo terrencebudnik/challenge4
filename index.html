@@ -1,60 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
     <title>Coding Quiz</title>
-    
+
 </head>
+
 <body>
-    <header>
+    <header id="header">
         <span id="highscores"><button type="button" id="highScorebutton">View HighScores</button></span>
-        <!-- <span id="correct" style="display:none">Correct</span>
-        <span id="incorrect" style="display:none"">Incorrect</span> -->
         <span id="time">Time</span>
     </header>
-    <section>  
+    <section>
         <h1>Coding Quiz</h1>
         <p>This quiz will text your knowledge of Javascript</p>
         <button id="start">Start Quiz</button>
     </section>
-    
-    <div id="questionBody">
-        <div id="quizBox">
-            <article id="quizBoxquestions"></article>
-            <article id="quizBoxanswers">
-                <ul id="multipleChoice">
-                    <li><a id="answer-1" href="#"></a></li>
-                    <li><a id="answer-2" href="#"></a></li>
-                    <li><a id="answer-3" href="#"></a></li>
-                    <li><a id="answer-4" href="#"></a></li>
-                </ul>
-            
-            </article>
-        
-         </div>
-    </div>
-    
-   <div id="gameOver">GAME OVER
-    <h2 id="showScores"></h2>
-   </div>
-   
-   <form id="highScores">
 
-        <label>First name:</label><br>
-        <input id="firstName" type="text"><br>
-        <label>Last Name:</label><br>
-        <input id="lastName" type="text"><br>
+    <div id="gameOver">GAME OVER
+        <h2 id="showScores"></h2>
+    </div>
+
+    <form id="highScores">
+        <label>Enter Initials</label><br>
+        <input id="initials" type="text"><br>
         <input id="submitScores" type="button" onclick="scores()" value="Submit form">
-        
-      </form>
+    </form>
+
 
     <div id="scoresheet">
         <h1>Scores</h1>
         <ol>
-            <li id="player-1"></li>
+            <li id="player-name"></li>
             <li></li>
             <li></li>
             <li></li>
@@ -62,10 +43,13 @@
         </ol>
 
     </div>
-   
 
- 
-    
-<script src="./assets/script.js"></script>     
+
+
+
+    <script src="./assets/script.js"></script>
 </body>
+
 </html>
+
+

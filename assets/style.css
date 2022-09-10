@@ -1,4 +1,4 @@
-header {
+#header {
     background-color: lightblue;
     height: 75px;
     border: solid black;
@@ -25,15 +25,6 @@ header {
     float: right;
 }
 
-/* #correct {
-    font-size: 2em;
-    margin-left: 338px;
-}
-
-#incorrect {
-    font-size: 2em;
-    margin-left: 338px;
-} */
 
 section {
    text-align: center;
@@ -47,50 +38,32 @@ section p {
     font-size: 2em;
 }
 
-#questionBody {
-    display: flex;
-    justify-content: center;
-}
 
 
 #quizBox {
-    display: none;
-    background-color: rgb(170, 174, 175);
+    background-color: lightblue;
     margin-top: 100px;
     height: 200px;
     margin-left: 200px;
     width: 800px;
     padding: 20px;
     border-radius: 25px;
-    border: 2px solid lightblue;
+    border: 2px solid black;
    
 }
 
-#quizBoxquestions {
-    font-size: 2em;
-}
 
-#quizBoxanswers {
-    margin-top: 20px;
-}
-
-ul {
+#quizBoxquestions ul {
     list-style-type: none;
- }
-
-li {
-    font-size: 1.25em;
+    font-size: 1em;
     margin: auto;
     text-decoration: none;
-}
+ }
 
-li:hover {
-    background-color: lightblue;
-}
+ #quizBoxanswers li:hover {
+    background-color: white;
 
-a {
-    text-decoration: none;
-}
+ }
 
 #gameOver {
     display: none;
@@ -118,8 +91,8 @@ a {
 
 #scoresheet {
     display: none;
-    margin-top: 300px;
-    margin-left: 550px;
+    margin-top: 200px;
+    margin-left: 630px;
     background-color: rgb(170, 174, 175);
     height: 200px;
     width: 800px;
