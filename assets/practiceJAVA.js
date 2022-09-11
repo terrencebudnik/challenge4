@@ -1,312 +1,133 @@
-var header = document.querySelector("header");
-var startQuizbutton = document.getElementById("start");
-var counterDiv = document.getElementById("time");
+var header = document.querySelector("#header");
+var startQuizbutton = document.querySelector("#start");
+var counterDiv = document.querySelector("#time");
 var mainBody = document.querySelector("section");
-var quizBox = document.getElementById("quizBox");
-var quizBoxquestions = document.getElementById("quizBoxquestions");
-var quizBoxanswers = document.getElementById("quizBoxanswers");
-var answer1 = document.getElementById('answer-1');
-var answer2 = document.getElementById('answer-2');
-var answer3 = document.getElementById('answer-3');
-var answer4 = document.getElementById('answer-4');
-
 var timer;
-var countdown; 
-var currentQuestion = 0;
-var multipleChoice = document.getElementById("multipleChoice");
-var scoreTracker= 0; 
-// var correct = document.getElementById("correct");
-// var incorrect = document.getElementById("incorrect"); 
+var countdown;
+var qIndex = 0;
+var scoreTracker = 0;
 var showScores = document.getElementById("showScores");
- submitScores = document.getElementById("submitScores");
-var fName;
-var lName;
-
-document.getElementById("highScorebutton").addEventListener ("click", function (){
-    document.getElementById("scoresheet").style.display= "block"
-}
-)
-
-
+var submitScores = document.getElementById("submitScores");
 
 
 var quizQuestions = [
-{
-    question: "1. What is Javascript?",
-    options: {
-        A: "Drink",
-        B: "Food",
-        C: "Coding language",
-        D: "Machine"
+    {
+        main: "What is Javascript?",
+        options: ["Drink", "Food", "Coding language", "A machine"],
+        correct: "Coding language"
     },
-    correct: "Coding language"  
-},
-{
-    question: "2. A function requires___",
-    options: {
-        A: "()",
-        B: "<>",
-        C: "**",
-        D: "||"
+
+    {
+        main: "A function requires___",
+        options: ["()", "<>", "**", "||"],
+        correct: 2
     },
-    correct: "()"
-},
-{   
-    question: "3. What is DOM?",
-    options: {
-        A: "Drag Option Mover",
-        B: "Document Object Model",
-        C: "Do Over and Minimize",
-        D: "Different Order Maker"
+
+    {
+        main: "A What is DOM",
+        options: ["Drag Option Mover", "Document Object Model", "Do Over and Minimize", "Different Order Maker"],
+        correct: 2
     },
-    correct: "Document Object Model"
-},
-{
-    question: "4. How do you link you Java file to the HTML",
-    options: {
-        A: "Create a function",
-        B: "Copy and Paste",
-        C: "It's done automatically",
-        D: "Use <script src= </script>"
+
+    {
+        main: "How do you link you Java file to the HTML",
+        options: ["Create a function", "Copy and Paste", "It's done automatically", "Use <script src= </script>"],
+        correct: 2
     },
-    correct: "Use <script src= </script>"
-},
-{
-    question: "5. Arrays start with ___",
-    options: {
-        A: "[0]",
-        B: "[1]",
-        C: "[A]",
-        D: "[a]"
-    },
-    correct: "[0]"
+
+    {
+        main: "Arrays start with ___",
+        options: ["[0]", "[1]", "[A]", "[a]"],
+        correct: 1
+    }];
+
+
+function showQuestion() {
+
+    var quizBox = document.createElement("div");
+    quizBox.setAttribute("id", "quizBox")
+    document.body.appendChild(quizBox);
+
+
+    var quizBoxquestions = document.createElement("h2");
+    quizBoxquestions.textContent = quizQuestions[qIndex].main;
+    quizBoxquestions.setAttribute("id", "quizBoxquestions");
+    quizBox.appendChild(quizBoxquestions);
+
+    showAnswers(); 
+    
+}   
+
+
+function showAnswers () {
+
+    var quizBoxanswers = document.createElement("ul");
+    quizBoxanswers.setAttribute("id", "quizBoxanswers");
+    quizBoxquestions.appendChild(quizBoxanswers);
+
+    for (x = 0; x < 4; x++) {
+        var listItem = document.createElement("li");
+        quizBoxanswers.appendChild(listItem);
+        var questionButton = document.createElement("button");
+        questionButton.textContent = quizQuestions[qIndex].options[x];
+        listItem.appendChild(questionButton);
+
+
+    quizBoxanswers.addEventListener("click", function () {
+        quizBox.style.display = "none";
+        if (this == quizQuestions[qIndex].correct) {
+            header.style.display = "green";
+        }
+        qIndex +=1;
+
+        if (qIndex < quizQuestions.length){
+            showQuestion();
+        } else {
+            clearInterval(timer);
+            quizBox.style.display = "none";
+            results(); 
+        }
+   
+    })
+
+    }   
 }
-]; 
 
 
-
-startQuizbutton.addEventListener("click", function() {
+function startQuiz() {
+startQuizbutton.addEventListener("click", function () {
     mainBody.style.display = "none";
-    quizBox.style.display = "block";
-    showQuestion1();
+    showQuestion();
     countdown = 30;
     counterDiv.textContent = "Time Left: " + countdown;
-    timer = setInterval(function() {
-        countdown--;
+    timer = setInterval(function () {
+        countdown;
         counterDiv.textContent = "Time Left: " + countdown
         if (countdown === 0) {
             clearInterval(timer);
-            questionBody.style.display= "none";
+            quizBox.style.display = "none";
             document.getElementById("gameOver").style.display = "block";
-            document.getElementById("highScores").style.display= "block"  
-            
+            document.getElementById("highScores").style.display = "block"
 
-       }
-       
+        }
 
     }, 1000)
 
 })
 
-
-
-function showQuestion1 () {
-    for (currentQuestion; currentQuestion < 6; currentQuestion++){     
-    }     
-
-    quizBoxquestions.innerHTML = quizQuestions[0].question;
-    answer1.textContent = quizQuestions[0].options.A;
-    answer2.textContent = quizQuestions[0].options.B;
-    answer3.textContent = quizQuestions[0].options.C;
-    answer4.textContent = quizQuestions[0].options.D;
-   
-  multipleChoice.addEventListener('click', function(evt) {   
-                
-        var target = evt.target.value; 
-        //correctAnswer = quizQuestions[0].correctAnswer;
-        if (target == "A coding language") {
-            header.style.background = "green";
-            scoreTracker += 1;
-            showQuestion2();
-            
-        }
-          else {
-            header.style.background = "red"; 
-            countdown-=2; 
-            showQuestion2();
-
-        }
-    })     
- 
-    
- return scoreTracker;    
 }
-
-function showQuestion2 () {
-    
-    
-    quizBoxquestions.innerHTML = quizQuestions[1].question;
-    answer1.textContent = quizQuestions[1].options.A;
-    answer2.textContent = quizQuestions[1].options.B;
-    answer3.textContent = quizQuestions[1].options.C;
-    answer4.textContent = quizQuestions[1].options.D;
-    
-  
-    multipleChoice.addEventListener('click', function(evt) {
-
-        var target = evt.target.value; 
-        if (target == quizQuestions[1].correct) {
-            header.style.background = "green";
-            scoreTracker += 1;
-            showQuestion3(); 
-            
-        }
-          else {
-            header.style.background = "red";
-            countdown-=2; 
-            showQuestion3(); 
-
-        }
-    })     
-    
-    
-    return scoreTracker;      
-}
-
-
-    
-function showQuestion3 () {
-   
-    
-
-    quizBoxquestions.innerHTML = quizQuestions[2].question;
-    answer1.textContent = quizQuestions[2].options.A;
-    answer2.textContent = quizQuestions[2].options.B;
-    answer3.textContent = quizQuestions[2].options.C;
-    answer4.textContent = quizQuestions[2].options.D;
-    
-   multipleChoice.addEventListener('click', function(evt) {   
-        var target = evt.target.value; 
-        if (target == quizQuestions[2].correct) {
-            header.style.background = "green";
-            scoreTracker += 1;
-            showQuestion4();
-            
-        }
-          else {
-            header.style.background = "red";
-            countdown-=2; 
-            showQuestion4();
- 
-
-        }
-    })     
-    
-    return scoreTracker;  
-}
-
-
-function showQuestion4 () {
-  
-    
-    quizBoxquestions.innerHTML = quizQuestions[3].question;
-    answer1.textContent = quizQuestions[3].options.A;
-    answer2.textContent = quizQuestions[3].options.B;
-    answer3.textContent = quizQuestions[3].options.C;
-    answer4.textContent = quizQuestions[3].options.D;
-    
-   multipleChoice.addEventListener('click', function(evt) {   
-        var target = evt.target.value; 
-        if (target == quizQuestions[3].correct) {
-            header.style.background = "green";
-            scoreTracker += 1;
-            showQuestion5(); 
-            
-        }
-          else {
-            header.style.background = "red";
-            countdown-=2; 
-            showQuestion5(); 
-
-        }
-    })     
-    
-    return scoreTracker;  
-    
-}
-
-function showQuestion5 () {
-   
-    
-
-    quizBoxquestions.innerHTML = quizQuestions[4].question;
-    answer1.textContent = quizQuestions[4].options.A;
-    answer2.textContent = quizQuestions[4].options.B;
-    answer3.textContent = quizQuestions[4].options.C;
-    answer4.textContent = quizQuestions[4].options.D;
-    
-   multipleChoice.addEventListener('click', function(evt) {   
-        var target = evt.target.value; 
-        if (target == quizQuestions[4].correct) {
-            header.style.background = "green";
-            scoreTracker += 1;
-            quizBox.style.display = "none";
-            clearInterval(timer);
-    document.getElementById("gameOver").style.display = "block";
-    showScores.innerHTML="Final Score: " + scoreTracker.toString(); 
-    document.getElementById("highScores").style.display= "block";  
-            
-        }
-          else {
-            header.style.background = "red";
-            clearInterval(timer);
-            quizBox.style.display = "none";
-            finalScore();
-    
-        }
-    })     
-    return scoreTracker;    
-   
-}
+     
+function results() {
+    document.getElementById("gameOver").style.display = "block";         
+    document.getElementById("highScores").style.display = "block";
+    var playerName = document.getElementById("player-name")
+    localStorage.setItem("playerName,", )
    
 
 
-function finalScore() {
-    document.getElementById("gameOver").style.display = "block";
-    showScores.innerHTML="Final Score: " + scoreTracker.toString(); 
-    document.getElementById("highScores").style.display= "block"
 
 
 }
-    
-function scores() {
-   
-    
-    document.getElementById("scoresheet").style.display = "block";
-   
-    var fName = document.getElementById("firstName").value;
-    var lName = document.getElementById("lastName").value; 
-    
-    document.getElementById("player-1").innerHTML = fName + "   " + lName + "              " + scoreTracker.toString(); 
-    //document.getElementById("player-1").localStorage.setItem("player_one)", JSON.stringify(player_one)); 
-    
-    
-    
-}
 
 
-document.getElementById("highScorebutton").addEventListener ("click", function (){
-    document.getElementById("scoresheet").style.display= "block"
-
-
-
-
-// function renderPlayerNames(){
-//     JSON.parse(localStorage.getItem("player_one"));
-    
-//     document.getElementById("player-1").innerHTML = fName + "   " + lName;
-    
-// }
-
-// renderPlayerNames();
-
+startQuiz(); 
