@@ -82,7 +82,7 @@ function startQuiz() {
 startQuizbutton.addEventListener("click", function () {
     mainBody.style.display = "none";
     showQuestion1();
-    countdown = 200;
+    countdown = 60;
     counterDiv.textContent = "Time Left: " + countdown;
     timer = setInterval(function () {
         countdown--;
