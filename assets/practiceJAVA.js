@@ -4,11 +4,9 @@ var counterDiv = document.querySelector("#time");
 var mainBody = document.querySelector("section");
 var timer;
 var countdown;
+var quizBox = document.querySelector("#quizBox"); 
 var qIndex = 0;
 var scoreTracker = 0;
-var showScores = document.getElementById("showScores");
-var submitScores = document.getElementById("submitScores");
-
 
 var quizQuestions = [
     {
@@ -20,94 +18,40 @@ var quizQuestions = [
     {
         main: "A function requires___",
         options: ["()", "<>", "**", "||"],
-        correct: 2
+        correct: "()"
     },
 
     {
         main: "A What is DOM",
         options: ["Drag Option Mover", "Document Object Model", "Do Over and Minimize", "Different Order Maker"],
-        correct: 2
+        correct: "DOcument Object Model"
     },
 
     {
         main: "How do you link you Java file to the HTML",
         options: ["Create a function", "Copy and Paste", "It's done automatically", "Use <script src= </script>"],
-        correct: 2
+        correct: "Use <script src= </script>"
     },
 
     {
         main: "Arrays start with ___",
         options: ["[0]", "[1]", "[A]", "[a]"],
-        correct: 1
+        correct: "[0]"
     }];
-
-
-function showQuestion() {
-
-    var quizBox = document.createElement("div");
-    quizBox.setAttribute("id", "quizBox")
-    document.body.appendChild(quizBox);
-
-
-    var quizBoxquestions = document.createElement("h2");
-    quizBoxquestions.textContent = quizQuestions[qIndex].main;
-    quizBoxquestions.setAttribute("id", "quizBoxquestions");
-    quizBox.appendChild(quizBoxquestions);
-
-    showAnswers(); 
-    
-}   
-
-
-function showAnswers () {
-
-    var quizBoxanswers = document.createElement("ul");
-    quizBoxanswers.setAttribute("id", "quizBoxanswers");
-    quizBoxquestions.appendChild(quizBoxanswers);
-
-    for (x = 0; x < 4; x++) {
-        var listItem = document.createElement("li");
-        quizBoxanswers.appendChild(listItem);
-        var questionButton = document.createElement("button");
-        questionButton.textContent = quizQuestions[qIndex].options[x];
-        listItem.appendChild(questionButton);
-
-
-    quizBoxanswers.addEventListener("click", function () {
-        quizBox.style.display = "none";
-        if (this == quizQuestions[qIndex].correct) {
-            header.style.display = "green";
-        }
-        qIndex +=1;
-
-        if (qIndex < quizQuestions.length){
-            showQuestion();
-        } else {
-            clearInterval(timer);
-            quizBox.style.display = "none";
-            results(); 
-        }
-   
-    })
-
-    }   
-}
-
 
 function startQuiz() {
 startQuizbutton.addEventListener("click", function () {
     mainBody.style.display = "none";
     showQuestion();
-    countdown = 30;
+    countdown = 10;
     counterDiv.textContent = "Time Left: " + countdown;
     timer = setInterval(function () {
-        countdown;
+        countdown--;
         counterDiv.textContent = "Time Left: " + countdown
         if (countdown === 0) {
             clearInterval(timer);
             quizBox.style.display = "none";
-            document.getElementById("gameOver").style.display = "block";
-            document.getElementById("highScores").style.display = "block"
+            results(); 
 
         }
 
@@ -116,18 +60,61 @@ startQuizbutton.addEventListener("click", function () {
 })
 
 }
-     
-function results() {
-    document.getElementById("gameOver").style.display = "block";         
-    document.getElementById("highScores").style.display = "block";
-    var playerName = document.getElementById("player-name")
-    localStorage.setItem("playerName,", )
+
+function showQuestion1() {
    
+    
+    quizBox.style.display = "block";
+
+    var quizBoxquestions = document.createElement("h2");
+    quizBoxquestions.textContent = quizQuestions[0].main;
+    quizBoxquestions.setAttribute("id", "quizBoxquestions");
+    quizBox.appendChild(quizBoxquestions);
 
 
-
+    for (x = 0; x < 4; x++) {
+        var questionButton = document.createElement("button");
+        questionButton.setAttribute("id", "questionButton"); 
+        questionButton.textContent= quizQuestions[0].options[x];
+        quizBox.appendChild(questionButton);
+        
+        questionButton.addEventListener("click", function(e) {
+            if (e.target.textContent === quizQuestions[0].correct) {
+                scoreTracker+=1; 
+           
+            } else { 
+                timer= timer - 2; 
+            }
+                quizBox.style.display = "none";  
+            
+        })
+    }
 
 }
 
 
+function results() {
+    var scoreSheet = document.querySelector("#scoreSheet"); 
+    var playerList = document.querySelector("playerList"); 
+    
+    document.querySelector("#gameOver").style.display = "block";         
+    document.querySelector("#enterPlayerName").style.display = "block";
+
+
+
+    document.querySelector("#enterPlayerName").addEventListener("submit", function(){
+        var initials = document.querySelector("initials");
+        window.localStorage.setItem('player-name', JSON.stringify(initials));
+
+      document.querySelector("#scoreSheet").style.display= "block";
+        playerList.textContent= window.localStorage.getItem('player-name'); 
+
+
+        
+        
+    })
+    
+}
+
 startQuiz(); 
+

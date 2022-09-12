@@ -41,10 +41,11 @@ section p {
 
 
 #quizBox {
+    text-align: center;
     background-color: lightblue;
     margin-top: 100px;
     height: 200px;
-    margin-left: 200px;
+    margin-left: 450px;
     width: 800px;
     padding: 20px;
     border-radius: 25px;
@@ -53,14 +54,10 @@ section p {
 }
 
 
-#quizBoxquestions ul {
-    list-style-type: none;
-    font-size: 1em;
-    margin: auto;
-    text-decoration: none;
- }
 
- #quizBoxanswers li:hover {
+ #questionButton {
+    margin: 10px;
+    
     background-color: white;
 
  }
@@ -89,10 +86,10 @@ section p {
     margin: auto;
 }
 
-#scoresheet {
+#scoreSheet {
     display: none;
     margin-top: 200px;
-    margin-left: 630px;
+    margin-left: 565px;
     background-color: rgb(170, 174, 175);
     height: 200px;
     width: 800px;

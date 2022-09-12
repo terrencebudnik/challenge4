@@ -21,8 +21,8 @@
         <button id="start">Start Quiz</button>
     </section>
 
-    <div id ="quizBox" style ="display:none"></div> 
-
+    <div id="quizBox" style ="display:none"></div> 
+   
     <div id="gameOver">GAME OVER
         <h2 id="showScores"></h2>
     </div>
@@ -30,11 +30,21 @@
     <form id="enterPlayerName">
         <label>Enter Initials</label><br>
         <input id="initials" type="text"><br>
-        <input type="button" value="Submit Scores"> 
+        <input id="submitScores" type="button" value="Submit Scores"> 
     </form>
 
 
-    <div id="scoreSheet" style ="display:none"></div>
+    <div id="scoreSheet" style ="display:none">
+        <h3>Top 5 Scores</h3>
+        <ul>
+            <li id="playerList"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    
+    </div>
        
 
 
