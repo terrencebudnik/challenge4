@@ -4,6 +4,7 @@ var counterDiv = document.querySelector("#time");
 var mainBody = document.querySelector("section");
 var quizBox = document.querySelector("#quizBox"); 
 var scoreTracker = 0;
+var initials;
 var timer;
 var countdown;
 
@@ -38,16 +39,55 @@ var quizQuestions = [
         correct: "[0]"
     }];
 
+
+function viewScores() {
+
+        var scoreSheet = document.querySelector("#scoreSheet"); 
+        scoreSheet.style.display= "block"; 
+        
+        var playerList = document.querySelector("#playerList");
+        var initials = localStorage.getItem("initials");
+        var score = localStorage.getItem("score");
+        playerList.textContent= initials + " - " + score;
+       
+        }
+       
+function results() {
+          
+           clearInterval(timer);  
+            
+            document.querySelector("#gameOver").style.display = "block";         
+            document.querySelector("#showScores").style.display ="block";
+            document.querySelector("#showScores").textContent = "Final Score:" + scoreTracker; 
+            
+            document.querySelector("#nameInput").style.display = "block";
+         
+            
+            document.querySelector("#submitScores").addEventListener("click", function(){
+                var scoreSheet = document.querySelector("#scoreSheet"); 
+                scoreSheet.style.display= "block"; 
+                var initials = document.querySelector("#initials").value;
+                localStorage.setItem("initials", initials);
+                localStorage.setItem("score", scoreTracker);
+                viewScores();  
+            })
+
+         }
+
+document.querySelector("#highscores").addEventListener("click", function() {
+    viewScores(); 
+})
+
 function startQuiz() {
 startQuizbutton.addEventListener("click", function () {
     mainBody.style.display = "none";
     showQuestion1();
-    countdown = 30;
+    countdown = 200;
     counterDiv.textContent = "Time Left: " + countdown;
     timer = setInterval(function () {
         countdown--;
         counterDiv.textContent = "Time Left: " + countdown
-        if (countdown <= 0) {
+        if (countdown === 0) {
             clearInterval(timer);
             quizBox.style.display = "none";
             results(); 
@@ -55,7 +95,7 @@ startQuizbutton.addEventListener("click", function () {
         }
 
     }, 1000)
-
+    return timer(); 
 })
 
 }
@@ -223,32 +263,6 @@ function showQuestion5() {
     }
     return scoreTracker;
 }
-
-
-
-
-function results() {
-   
-    
-    document.querySelector("#gameOver").style.display = "block";         
-    document.querySelector("#showScores").style.display ="block";
-    document.querySelector("#showScores").textContent = "Final Score:" + scoreTracker; 
-    
-    document.querySelector("#enterPlayerName").style.display = "block";
-
-
-
-    document.querySelector("#submitScores").addEventListener("click", function(){
-        var scoreSheet = document.querySelector("#scoreSheet"); 
-        scoreSheet.style.display= "block"; 
-        var initials = document.querySelector("#initials").textContent;
-        localStorage.setItem("player-name", JSON.stringify(initials));
-        var playerList = document.querySelector("#playerList");
-        playerList.textContent=localStorage.getItem("player-name"); 
-    
-    })
-    
- }
 
 startQuiz(); 
 

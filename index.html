@@ -12,7 +12,7 @@
 
 <body>
     <header id="header">
-        <span id="highscores"><button type="button" id="highScorebutton">View HighScores</button></span>
+        <span id="highscores"><button type="button">View HighScores</button></span>
         <span id="time">Time</span>
     </header>
     <section>
@@ -27,7 +27,7 @@
         <h2 id="showScores"></h2>
     </div>
 
-    <form id="enterPlayerName">
+    <form id="nameInput">
         <label>Enter Initials</label><br>
         <input id="initials" type="text"><br>
         <input id="submitScores" type="button" value="Submit Scores"> 
@@ -35,9 +35,9 @@
 
 
     <div id="scoreSheet" style ="display:none">
-        <h3>Top 5 Scores</h3>
-        <ul>
-            <li id="playerList"></li>
+        <h3>Score History</h3>
+        <ul id="playerList">
+            <li></li>
             <li></li>
             <li></li>
             <li></li>
